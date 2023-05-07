@@ -1,5 +1,4 @@
 const path = require('path');
-const fs = require('fs');
 const { rm, mkdir, readdir, copyFile } = require('fs/promises');
 
 const fromFolder = path.join(__dirname, 'files');
@@ -8,7 +7,9 @@ const toFolder = path.join(__dirname, 'files-copy');
 const copyDir = async (from, to) => {
   try {
     await deleteFolder(to);
-  } catch {} 
+  } catch {
+    // do nothing
+  } 
   finally {
     await createFolder(to);
     const files = await getFilesInfo(from);
